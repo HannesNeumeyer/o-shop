@@ -17,6 +17,7 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AuthService } from './auth.service';
+import { UserService } from './user.service';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { AuthService } from './auth.service';
       ])
   ],
   providers: [
-    AuthService
+    AuthService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
