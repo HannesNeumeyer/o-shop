@@ -42,8 +42,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     console.log(this.category)
   }
 
-  addToCart(){
-    this.scService.getOrCreateCartId();
+  addToCart(product){
+    this.scService.updateItem(product);
   }
 
 }
