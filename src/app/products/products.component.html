@@ -32,13 +32,32 @@
               </div>
               <div class="card-footer">
                 <button 
-                  class="btn btn-secondary btn-block"
-                  (click)="addToCart(product)"
-                  >Add to Cart
-                </button>
-                <div>
-                  {{getQuantity(product)}} in cart 
+                *ngIf="getQuantity(product) === 0; else updateQuantity"
+                (click)="addToCart(product)"
+                class="btn btn-secondary btn-block"
+                >Add to Cart
+              </button>
+              <ng-template #updateQuantity>
+                <div class="row no-gutters">
+                  <div class="col-2">
+                      <button 
+                        (click)="removeFromCart(product)"
+                        class="btn btn-secondary btn-block"
+                        >-
+                      </button>
+                    </div>
+                    <div class="col text-center">
+                    {{ getQuantity(product) }} in cart
+                    </div>
+                    <div class="col-2">
+                      <button 
+                        (click)="addToCart(product)"
+                        class="btn btn-secondary btn-block"
+                        >+
+                      </button>
+                    </div>
                 </div>
+              </ng-template>
               </div>
             </div>
           </div>
