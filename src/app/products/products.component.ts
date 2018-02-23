@@ -3,6 +3,7 @@ import { ProductService } from '../product.service';
 import { CategoryService } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({
   selector: 'app-products',
@@ -16,7 +17,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   categories$;
   category;
 
-  constructor(private productService: ProductService, private categoryService: CategoryService, private route: ActivatedRoute) { }
+  constructor(private scService: ShoppingCartService, private productService: ProductService, private categoryService: CategoryService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.subscription = this.productService.getAll().subscribe(p => {
@@ -39,6 +40,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     ? this.products.filter(p => p.categories === this.category)
     : this.products;
     console.log(this.category)
+  }
+
+  addToCart(){
+    this.scService.getOrCreateCartId();
   }
 
 }
