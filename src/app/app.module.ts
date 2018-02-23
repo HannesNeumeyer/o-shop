@@ -23,6 +23,7 @@ import { AuthGuard } from './auth-guard.service';
 import { AdminProductFormComponent } from './admin/admin-product-form/admin-product-form.component';
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
+import { CategoryService } from './category.service';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { CustomFormsModule } from 'ng2-validation';
     AuthService,
     UserService,
     AuthAdminGuard,
-    AuthGuard
+    AuthGuard,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
