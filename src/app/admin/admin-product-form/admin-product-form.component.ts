@@ -26,7 +26,14 @@ export class AdminProductFormComponent implements OnInit {
   }
 
   save(product){
-    this.productService.create(product);
+    if (this.id) this.productService.update(this.id, product);
+    else this.productService.create(product);
+
+    this.router.navigate(['/admin/products'])
+  }
+
+  delete(){
+    this.productService.delete(this.id)
 
     this.router.navigate(['/admin/products'])
   }
