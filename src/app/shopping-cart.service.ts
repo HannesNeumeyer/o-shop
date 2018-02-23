@@ -33,4 +33,9 @@ export class ShoppingCartService {
       else item$.set({product: product, quantity: 1})
     })
   }
+
+  async getCart(){
+    let cartId = await this.getOrCreateCartId();
+    return this.db.object('/shopping-carts/' + cartId)
+  }
 }
