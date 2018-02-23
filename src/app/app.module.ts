@@ -20,6 +20,9 @@ import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 import { AuthAdminGuard } from './auth-admin-guard.service';
 import { AuthGuard } from './auth-guard.service';
+import { AdminProductFormComponent } from './admin/admin-product-form/admin-product-form.component';
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
 
 
 @NgModule({
@@ -32,10 +35,13 @@ import { AuthGuard } from './auth-guard.service';
     MyOrdersComponent,
     CheckOutComponent,
     AdminOrdersComponent,
-    AdminProductsComponent
+    AdminProductsComponent,
+    AdminProductFormComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    CustomFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
@@ -48,6 +54,7 @@ import { AuthGuard } from './auth-guard.service';
         {path:'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
         {path:'my-orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
       
+        {path:'admin/products/new', component: AdminProductFormComponent, canActivate: [AuthGuard, AuthAdminGuard]},
         {path:'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AuthAdminGuard]},
         {path:'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard, AuthAdminGuard]}
       ])
