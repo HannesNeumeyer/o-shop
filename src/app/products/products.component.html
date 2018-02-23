@@ -3,12 +3,17 @@
     <div class="sticky-top">
       <div class="list-group">
           <a 
-            class="list-group-item list-group-item-action">
+            class="list-group-item list-group-item-action"
+            [class.active]="!category"
+            routerLink="/">
             All Categories
           </a>
           <a 
             *ngFor="let c of categories$ | async" 
-            class="list-group-item list-group-item-action">
+            routerLink="/"
+            [queryParams]="{ category: c.$key }"
+            class="list-group-item list-group-item-action"
+            [class.active]="category === c.$key">
             {{c.name}}
           </a>
         </div>
@@ -17,7 +22,7 @@
   <div class="col">
       <div class="row">
           <!-- Need ng-container so that i is within the scope of div with class="w-100" -->
-          <ng-container  *ngFor="let product of products$ | async; let i = index">
+          <ng-container  *ngFor="let product of filteredProducts; let i = index">
           <div class="col"> 
             <div *ngIf="product.title" class="card" >
               <img *ngIf="product.imageUrl" class="card-img-top" src="{{product.imageUrl}}" alt="{{product.title}}">
