@@ -40,11 +40,21 @@ export class ShoppingCartService {
     return this.db.object('/shopping-carts/' + cartId)
   }
 
+  async getItems(){
+    let cartId = await this.getOrCreateCartId();
+    return this.db.list('/shopping-carts/' + cartId + '/items')
+  }
+
   async addToCart(product: Product){
     this.updateItem(product, 1)
   }
 
   async removeFromCart(product: Product){
     this.updateItem(product, -1)
+  }
+
+  async clearCart(){
+    let cartId = await this.getOrCreateCartId();
+    this.db.object('/shopping-carts/' + cartId + '/items').remove()
   }
 }
