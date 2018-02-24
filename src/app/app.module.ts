@@ -26,6 +26,8 @@ import { CustomFormsModule } from 'ng2-validation';
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ShoppingCartService } from './shopping-cart.service';
+import { ShippingFormComponent } from './check-out/shipping-form/shipping-form.component';
+import { ShoppingCartSummaryComponent } from './check-out/shopping-cart-summary/shopping-cart-summary.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { ShoppingCartService } from './shopping-cart.service';
     CheckOutComponent,
     AdminOrdersComponent,
     AdminProductsComponent,
-    AdminProductFormComponent
+    AdminProductFormComponent,
+    ShippingFormComponent,
+    ShoppingCartSummaryComponent
   ],
   imports: [
     BrowserModule,
